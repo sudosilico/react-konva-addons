@@ -6,7 +6,7 @@ type KonvaAnimationEffectRef = {
   animation?: Konva.Animation;
   playing: boolean;
 };
-zzzzz;
+
 export function useKonvaAnimationEffect<TRef extends Konva.Node>(
   animate: KonvaAnimFunc,
   ref: RefObject<TRef>,
