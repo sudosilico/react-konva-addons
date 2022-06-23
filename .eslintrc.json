@@ -51,9 +51,22 @@
         "no-var": "off",
         "spaced-comment": "off"
       }
+    },
+    {
+      "files": ["*.stories.@(js|jsx|ts|tsx|mjs|cjs)"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
+            "peerDependencies": true
+          }
+        ]
+      }
     }
   ],
   "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
     "no-console": "off",
     "quotes": ["error", "double"],
     "comma-dangle": ["error", "always-multiline"],
@@ -72,14 +85,6 @@
     ],
     "import/no-cycle": "off",
     "import/prefer-default-export": "off",
-    "import/extensions": ["error", "never"],
-    // for storybook
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
-        "peerDependencies": true
-      }
-    ]
+    "import/extensions": ["error", "never"]
   }
 }
