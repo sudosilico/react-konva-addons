@@ -1,10 +1,10 @@
-import Konva from 'konva';
-import { IFrame } from 'konva/lib/types';
+import Konva from "konva";
+import { IFrame } from "konva/lib/types";
 import {
   RefObject,
   useEffect,
   useState,
-} from 'react';
+} from "react";
 
 export type KonvaAnimFunc = (frame: IFrame) => false | undefined | void;
 
@@ -19,8 +19,7 @@ export function useKonvaAnimation<TRef extends Konva.Node>({
   tickFunc,
   disabled,
 }: UseAnimationOptions<TRef>) {
-  const [activeAnimation, setActiveAnimation] =
-    useState<Konva.Animation | null>(null);
+  const [activeAnimation, setActiveAnimation] = useState<Konva.Animation | null>(null);
 
   useEffect(() => {
     if (disabled) return;
