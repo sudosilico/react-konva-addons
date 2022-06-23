@@ -9,7 +9,7 @@ export type KonvaDragHandlers = {
   onDragStart: KonvaDragHandler;
   onDragMove: KonvaDragHandler;
   onDragEnd: KonvaDragHandler;
-}
+};
 
 export type KonvaMouseHandlers = {
   onMouseEnter: KonvaMouseHandler;
@@ -20,7 +20,4 @@ type AllHandlers = KonvaDragHandlers & KonvaMouseHandlers;
 
 export type KonvaAddonProps = Partial<AllHandlers>;
 
-export type AddonBehaviorArray<T> = [
-  RefObject<T>,
-  KonvaAddonProps
-];
+export type AddonBehaviorArray<T> = [RefObject<T>, KonvaAddonProps];

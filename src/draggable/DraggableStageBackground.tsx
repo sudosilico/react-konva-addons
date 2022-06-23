@@ -11,12 +11,12 @@ type DraggableStageBackgroundProps = {
   bgRef: RefObject<Konva.Rect>;
 };
 
-export const DraggableStageBackground = ({
+export function DraggableStageBackground({
   width,
   height,
   stageRef,
   bgRef,
-}: DraggableStageBackgroundProps) => {
+}: DraggableStageBackgroundProps) {
   const handleDragMove = useCallback(
     (event: KonvaEventObject<MouseEvent>) => {
       if (!bgRef.current) {
@@ -38,7 +38,7 @@ export const DraggableStageBackground = ({
         y: stage.dragOffset.y,
       });
     },
-    [bgRef, stageRef]
+    [bgRef, stageRef],
   );
 
   return (
@@ -47,11 +47,11 @@ export const DraggableStageBackground = ({
       width={width}
       height={height}
       draggable
-      fill={"red"}
+      fill="red"
       x={0}
       y={0}
       opacity={0.2}
       onDragMove={handleDragMove}
     />
   );
-};
+}

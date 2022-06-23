@@ -1,11 +1,11 @@
-import Konva from 'konva';
-import { KonvaEventObject } from 'konva/lib/Node';
-import { RefObject } from 'react';
-import { useDraggableScrollListener } from './useDraggableScrollListener';
+import Konva from "konva";
+import { KonvaEventObject } from "konva/lib/Node";
+import { RefObject } from "react";
+import { useDraggableScrollListener } from "./useDraggableScrollListener";
 
 export function shouldPanStage({ evt }: KonvaEventObject<DragEvent>) {
-  const shift = evt.getModifierState('Shift');
-  const buttons = evt.buttons;
+  const shift = evt.getModifierState("Shift");
+  const { buttons } = evt;
 
   return (buttons === 1 && shift) || buttons === 4;
 }
@@ -21,7 +21,7 @@ export type DraggableStageRef = Konva.Stage & {
 
 export function useDraggableStage(
   stageRef: RefObject<DraggableStageRef>,
-  bgRef: RefObject<Konva.Rect>
+  bgRef: RefObject<Konva.Rect>,
 ) {
   function onDragStart(evt: KonvaEventObject<DragEvent>) {
     if (!shouldPanStage(evt) || !stageRef.current) {

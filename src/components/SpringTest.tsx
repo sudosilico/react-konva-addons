@@ -7,10 +7,10 @@ type MyRectProps = {
   //
 };
 
-const ColoredRect = () => {
+function ColoredRect() {
   const ref = useRef<Konva.Rect>(null);
   const [flag, setFlag] = useState(false);
-  const s = Math.random() * 2 + 0.5;
+
   const [springProps, setSpringProps] = useState({
     x: Math.random() * 700,
     y: Math.random() * 400,
@@ -19,7 +19,7 @@ const ColoredRect = () => {
 
   const handleClick = () => {
     setFlag(!flag);
-    const s = Math.random() * 2 + 0.5;
+
     setSpringProps({
       x: Math.random() * 700,
       y: Math.random() * 400,
@@ -30,11 +30,9 @@ const ColoredRect = () => {
   console.log("rendering: ColoredRect");
 
   return (
-    <Spring
-      to={springProps}
-      config={{ mass: 10, tension: 1000, friction: 100 }}
-    >
+    <Spring to={springProps} config={{ mass: 10, tension: 1000, friction: 100 }}>
       {(props) => (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         /* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */
         <animated.Rect
           ref={ref}
@@ -43,20 +41,20 @@ const ColoredRect = () => {
           width={50}
           height={50}
           offset={[25, 25]}
-          fill={"#addb67"}
-          stroke={"black"}
+          fill="#addb67"
+          stroke="black"
           strokeWidth={1}
         />
       )}
     </Spring>
   );
-};
+}
 
 export type SpringTestProps = {
   //
 };
 
-export function SpringTest(props: SpringTestProps) {
+export function SpringTest() {
   const nums: number[] = [];
 
   for (let i = 0; i < 10; i++) {
@@ -66,7 +64,7 @@ export function SpringTest(props: SpringTestProps) {
   return (
     <Stage width={700} height={400}>
       <Layer>
-        <Rect width={700} height={400} fill={"#ff0ff0"} />
+        <Rect width={700} height={400} fill="#ff0ff0" />
         {nums.map((num) => (
           <ColoredRect key={num} />
         ))}

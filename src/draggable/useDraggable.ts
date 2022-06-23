@@ -1,8 +1,8 @@
-import Konva from 'konva';
-import { KonvaEventObject } from 'konva/lib/Node';
-import { RefObject, useState } from 'react';
-import { KonvaAddonProps } from '../handlers/KonvaHandlers';
-import { shouldPanStage } from './shouldPanStage';
+import Konva from "konva";
+import { KonvaEventObject } from "konva/lib/Node";
+import { RefObject, useState } from "react";
+import { KonvaAddonProps } from "../handlers/KonvaHandlers";
+import { shouldPanStage } from "./shouldPanStage";
 
 const MAX_POINT: [number, number] = [Number.MAX_VALUE, Number.MAX_VALUE];
 
@@ -13,7 +13,7 @@ export type UseDraggableOptions = {
 export function useDraggable<T extends Konva.Node>(
   ref: RefObject<T>,
   addonProps?: KonvaAddonProps,
-  options?: UseDraggableOptions
+  options?: UseDraggableOptions,
 ) {
   const [position, setPosition] = useState<[number, number]>(MAX_POINT);
   const [isStageDragging, setIsStageDragging] = useState<boolean>(false);
@@ -79,7 +79,7 @@ export function useDraggable<T extends Konva.Node>(
 
       const stage = node.getStage();
       if (stage) {
-        stage.container().style.cursor = 'default';
+        stage.container().style.cursor = "default";
       }
     }
   }

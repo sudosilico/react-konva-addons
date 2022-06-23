@@ -7,9 +7,7 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof DraggableStage>;
 
-const Template: ComponentStory<typeof DraggableStage> = (
-  args: DraggableStageProps
-) => {
+const Template: ComponentStory<typeof DraggableStage> = (args: DraggableStageProps) => {
   return <DraggableStage {...args} />;
 };
 

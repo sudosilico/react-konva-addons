@@ -1,10 +1,10 @@
-import Konva from 'konva';
-import { RefObject, useCallback, useEffect } from 'react';
-import { DraggableStageRef } from './useDraggableStage';
+import Konva from "konva";
+import { RefObject, useCallback, useEffect } from "react";
+import { DraggableStageRef } from "./useDraggableStage";
 
 export function useDraggableScrollListener(
   stageRef: RefObject<DraggableStageRef>,
-  bgRef: RefObject<Konva.Rect>
+  bgRef: RefObject<Konva.Rect>,
 ) {
   // handle mouse scroll & touchpad zoom/pan
   const onWheel = useCallback(
@@ -64,15 +64,15 @@ export function useDraggableScrollListener(
         });
       }
     },
-    [stageRef, bgRef]
+    [stageRef, bgRef],
   );
 
   useEffect(() => {
     // { passive: false } option is required so we can preventDefault
-    document.addEventListener('wheel', onWheel, { passive: false });
+    document.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
-      document.removeEventListener('wheel', onWheel);
+      document.removeEventListener("wheel", onWheel);
     };
   }, [onWheel]);
 }

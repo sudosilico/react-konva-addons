@@ -1,10 +1,6 @@
 import Konva from "konva";
 import { IFrame } from "konva/lib/types";
-import {
-  RefObject,
-  useEffect,
-  useState,
-} from "react";
+import { RefObject, useEffect, useState } from "react";
 
 export type KonvaAnimFunc = (frame: IFrame) => false | undefined | void;
 
@@ -35,6 +31,7 @@ export function useKonvaAnimation<TRef extends Konva.Node>({
     animation.start();
     setActiveAnimation(activeAnimation);
 
+    // eslint-disable-next-line consistent-return
     return () => {
       animation.stop();
     };
