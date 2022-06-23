@@ -9,13 +9,9 @@
     "preview": "vite preview",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -h 127.0.0.1 -p 6006",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
-    "prepare-husky": "husky install"
+    "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
-  },
+  "husky": {},
   "dependencies": {
     "@react-spring/konva": "^9.4.5",
     "konva": "^8.3.10",
