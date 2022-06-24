@@ -1,4 +1,7 @@
+import Konva from "konva";
+import { useRef } from "react";
 import { Stage, Layer } from "react-konva";
+import { useKonvaAnimation } from "../animation/useKonvaAnimation";
 
 export type SpringStressTestProps = {
   //

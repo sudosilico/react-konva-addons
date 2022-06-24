@@ -5,13 +5,11 @@ import { RefObject, useEffect, useState } from "react";
 export type KonvaAnimFunc = (frame: IFrame) => false | undefined | void;
 
 type UseAnimationOptions<TRef> = {
-  ref: RefObject<TRef>;
   tickFunc: KonvaAnimFunc;
   disabled?: boolean;
 };
 
 export function useKonvaAnimation<TRef extends Konva.Node>({
-  ref,
   tickFunc,
   disabled,
 }: UseAnimationOptions<TRef>) {
@@ -20,13 +18,10 @@ export function useKonvaAnimation<TRef extends Konva.Node>({
   useEffect(() => {
     if (disabled) return;
 
-    const node = ref.current;
-    if (!node) return;
-
     const animation = new Konva.Animation((frame) => {
       if (!frame) return;
       tickFunc(frame);
-    }, node.getLayer());
+    });
 
     animation.start();
     setActiveAnimation(activeAnimation);
@@ -35,5 +30,5 @@ export function useKonvaAnimation<TRef extends Konva.Node>({
     return () => {
       animation.stop();
     };
-  }, [ref, tickFunc, disabled, activeAnimation]);
+  }, [tickFunc, disabled, activeAnimation]);
 }
