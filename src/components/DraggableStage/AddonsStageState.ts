@@ -1,8 +1,8 @@
-import { AddonsStageRefs } from "./DraggableStage";
+import { DraggableStageRefs } from "./DraggableStage";
 
-export type AddonsStageState = {
+export type DraggableStageContextState = {
   viewOffset: { x: number; y: number };
-  refs?: AddonsStageRefs;
+  refs?: DraggableStageRefs;
 };
 
 export const initialAddonsStageState: AddonsStageState = {

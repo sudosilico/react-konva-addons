@@ -2,11 +2,7 @@ import { useState } from "react";
 import { Rect } from "react-konva";
 import { DraggableLayer } from "../components/DraggableLayer";
 import { DraggableStage } from "../components/DraggableStage/DraggableStage";
-import { withAddons } from "./withAddons";
-
-const Background = withAddons(Rect, {
-  physics: "group",
-});
+import { withSignalNode } from "../signals/withSignalNode";
 
 const StaticRect = () => {
   return <Rect width={50} height={50} x={50} y={50} fill="white" />;
@@ -16,6 +12,9 @@ const DraggableRect = () => {
   return <Rect width={50} height={50} x={150} y={50} fill="green" draggable />;
 };
 
+/**
+ * This is a docstring for MyExample.
+ */
 export function MyExample() {
   const size = { width: 400, height: 400 };
   const [cursor, setCursor] = useState(25);

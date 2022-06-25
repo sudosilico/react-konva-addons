@@ -1,42 +1,60 @@
 import Konva from "konva";
 import { RefObject, useRef } from "react";
-import { Layer, Rect, Stage, StageProps } from "react-konva";
-import { AddonsStageState, initialAddonsStageState } from "./AddonsStageState";
+import { Group, Layer, Rect, Stage, StageProps } from "react-konva";
 import { getStageBackgroundProps, getDragStageProps } from "./getDragStageProps";
-import { AddonsStageContext } from "./StageContext";
+import { AddonsStageContext, useStageState } from "./StageContext";
 import { getInputContainerProps } from "./getInputContainerProps";
 import { useStageScrollListener } from "./useStageScrollListener";
 
-export type StateRef = React.MutableRefObject<AddonsStageState>;
+export type StageContextState = {
+  viewOffset: { x: number; y: number };
+  refs?: DraggableStageRefs;
+};
 
-export type AddonsStageRefs = {
-  contextStateRef: StateRef;
+const initialStageState: StageContextState = {
+  viewOffset: { x: 0, y: 0 },
+};
+
+export type StageContextRef = React.MutableRefObject<StageContextState>;
+
+export type DraggableStageRefs = {
+  stageContextRef: StageContextRef;
   stageRef: RefObject<Konva.Stage>;
   bgRef: RefObject<Konva.Rect>;
 };
 
-export type AddonsStageProps = StageProps & {
+export type DraggableStageProps = StageProps & {
   bgFill?: string;
   overrideTabIndex?: number;
 };
 
-export function DraggableStage(props: AddonsStageProps) {
+type FixedGroupProps = {
+  children?: React.ReactNode;
+};
+
+export function FixedGroup(props: FixedGroupProps) {
+  const stageState = useStageState();
+
+  return <Group>{props.children}</Group>;
+}
+
+export function DraggableStage(props: DraggableStageProps) {
   // inputs
   const { width, height, bgFill, overrideTabIndex } = props;
   const tabIndex = typeof overrideTabIndex === "number" ? overrideTabIndex : 1;
 
   // refs
-  const contextStateRef = useRef<AddonsStageState>(initialAddonsStageState) as StateRef;
+  const contextStateRef = useRef<StageContextState>(initialStageState) as StageContextRef;
   const stageRef = useRef<Konva.Stage>(null);
   const bgRef = useRef<Konva.Rect>(null);
 
-  const refs: AddonsStageRefs = {
-    contextStateRef,
+  const refs: DraggableStageRefs = {
+    stageContextRef: contextStateRef,
     stageRef,
     bgRef,
   };
 
-  if (contextStateRef.current) contextStateRef.current.refs = refs;
+  contextStateRef.current.refs = refs;
 
   // props
   const stageProps = getDragStageProps(refs);
@@ -58,14 +76,7 @@ export function DraggableStage(props: AddonsStageProps) {
       <Stage ref={stageRef} {...props} {...stageProps}>
         <AddonsStageContext.Provider value={{ stateRef: contextStateRef }}>
           <Layer>
-            <Rect
-              ref={bgRef}
-              width={width}
-              height={height}
-              {...bgProps}
-              fill="blue"
-              opacity={0.5}
-            />
+            <Rect ref={bgRef} width={width} height={height} {...bgProps} />
           </Layer>
           {props.children}
         </AddonsStageContext.Provider>

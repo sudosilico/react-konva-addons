@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from "react";
-import { AddonsStageRefs } from "./DraggableStage";
+import { DraggableStageRefs } from "./DraggableStage";
 
-export function useStageScrollListener(refs: AddonsStageRefs) {
+export function useStageScrollListener(refs: DraggableStageRefs) {
   const onWheel = useCallback(
     (e: WheelEvent) => {
       e.preventDefault();
 
-      const stageContext = refs.contextStateRef.current;
+      const stageContext = refs.stageContextRef.current;
       const stage = refs.stageRef.current;
       const background = refs.bgRef.current;
 
@@ -76,7 +76,7 @@ export function useStageScrollListener(refs: AddonsStageRefs) {
         stageContext.viewOffset = viewOffset;
       }
     },
-    [refs.bgRef, refs.contextStateRef, refs.stageRef],
+    [refs.bgRef, refs.stageContextRef, refs.stageRef],
   );
 
   useEffect(() => {

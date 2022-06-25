@@ -43,13 +43,10 @@ function ColoredRect({
     rotation: 0,
   });
 
-  useKonvaAnimation({
-    tickFunc: (frame) => {
-      //
-      if (ref.current) {
-        ref.current.rotation(ref.current.rotation() + frame.timeDiff * 0.2);
-      }
-    },
+  useKonvaAnimation((frame) => {
+    if (ref.current) {
+      ref.current.rotation(ref.current.rotation() + frame.timeDiff * 0.2);
+    }
   });
 
   const [position, setPosition] = useState({
@@ -128,16 +125,20 @@ export function SpringTest(springTestProps: SpringTestProps) {
   }
 
   return (
-    <DraggableStage width={width} height={height}>
-      <DraggableLayer>
-        {nums.map((num) => (
-          <ColoredRect
-            springTestProps={springTestProps}
-            key={num}
-            scale={{ x: scales[num], y: scales[num] }}
-          />
-        ))}
-      </DraggableLayer>
-    </DraggableStage>
+    <>
+      <h1>Before Stage</h1>
+      <DraggableStage width={width} height={height}>
+        <DraggableLayer>
+          {nums.map((num) => (
+            <ColoredRect
+              springTestProps={springTestProps}
+              key={num}
+              scale={{ x: scales[num], y: scales[num] }}
+            />
+          ))}
+        </DraggableLayer>
+      </DraggableStage>
+      <h2>After Stage</h2>
+    </>
   );
 }

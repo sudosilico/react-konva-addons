@@ -1,17 +1,15 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { FPSMeter } from "./FPSMeter";
 import { SpringTest, SpringTestProps } from "./SpringTest";
 
 export default {
   component: SpringTest,
-  title: "SpringTest",
+  title: "Spring",
 } as ComponentMeta<typeof SpringTest>;
 
 const Template: ComponentStory<typeof SpringTest> = (args: SpringTestProps) => {
   return (
     <>
       <SpringTest {...args} />
-      <FPSMeter enabled />
     </>
   );
 };

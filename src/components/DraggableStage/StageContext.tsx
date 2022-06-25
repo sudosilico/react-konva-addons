@@ -1,11 +1,11 @@
 import { RefObject, createContext, useContext } from "react";
-import { AddonsStageState } from "./AddonsStageState";
+import { StageContextState } from "./DraggableStage";
 
-export type AddonsStageContextValue = {
-  stateRef?: RefObject<AddonsStageState>;
+export type DraggableStageContextValue = {
+  stateRef?: RefObject<StageContextState>;
 };
 
-export const AddonsStageContext = createContext<AddonsStageContextValue>({});
+export const AddonsStageContext = createContext<DraggableStageContextValue>({});
 
 export function useStageContext() {
   const value = useContext(AddonsStageContext);

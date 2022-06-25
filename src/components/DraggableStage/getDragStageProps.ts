@@ -1,9 +1,13 @@
 import { KonvaEventObject } from "konva/lib/Node";
-import { AddonsStageRefs } from "./DraggableStage";
+import { DraggableStageRefs } from "./DraggableStage";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 
-export function getStageBackgroundProps({ contextStateRef, stageRef, bgRef }: AddonsStageRefs) {
+export function getStageBackgroundProps({
+  stageContextRef: contextStateRef,
+  stageRef,
+  bgRef,
+}: DraggableStageRefs) {
   return {
     draggable: true,
     onDragStart(e: KonvaEventObject<DragEvent>) {
@@ -27,7 +31,11 @@ export function getStageBackgroundProps({ contextStateRef, stageRef, bgRef }: Ad
   };
 }
 
-export function getDragStageProps({ contextStateRef, stageRef, bgRef }: AddonsStageRefs) {
+export function getDragStageProps({
+  stageContextRef: contextStateRef,
+  stageRef,
+  bgRef,
+}: DraggableStageRefs) {
   //
   return {
     onDragStart(e: KonvaEventObject<DragEvent>) {
