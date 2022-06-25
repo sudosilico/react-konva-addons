@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "eslint --ext .ts,.tsx src --fix",
-    "lint-no-fix": "eslint --ext .ts,.tsx src",
+    "lint": "eslint --ext .ts,.tsx src",
     "preview": "vite preview",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -h 127.0.0.1 -p 6006",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
