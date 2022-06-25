@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { RefObject, useEffect, useRef } from "react";
-import { KonvaAnimFunc } from "./useKonvaAnimation";
+import { AnimateFunc } from "./useKonvaAnimation";
 
 type KonvaAnimationEffectRef = {
   animation?: Konva.Animation;
@@ -8,7 +8,7 @@ type KonvaAnimationEffectRef = {
 };
 
 export function useKonvaAnimationEffect<TRef extends Konva.Node>(
-  animate: KonvaAnimFunc,
+  animate: AnimateFunc,
   ref: RefObject<TRef>,
 ) {
   const animRef = useRef<KonvaAnimationEffectRef>({
