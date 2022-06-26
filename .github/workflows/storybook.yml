@@ -11,7 +11,7 @@ jobs:
       - name: Install and Build
         run: | # Install npm packages and build the Storybook files
           yarn install
-          yarn build-storybook
+          yarn build-storybook:ghpages
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
