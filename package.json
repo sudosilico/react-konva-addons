@@ -6,11 +6,10 @@
     "prepare": "husky install",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -h 127.0.0.1 -p 6006",
     "lint": "eslint --ext .ts,.tsx src",
-    "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook -o docs-build"
+    "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook -o docs"
   },
   "husky": {},
   "dependencies": {
-    "@react-spring/konva": "^9.4.5",
     "konva": "^8.3.10",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
