@@ -5,8 +5,10 @@
   "scripts": {
     "prepare": "husky install",
     "storybook": "start-storybook -h 127.0.0.1 -p 6006",
+    "clean": "rimraf docs docs-build",
     "lint": "eslint --ext .ts,.tsx src",
-    "build-storybook": "build-storybook -o docs-build -s docs/assets"
+    "build-storybook": "build-storybook -o docs-build",
+    "build-storybook:ghpages": "build-storybook -o docs-build && node ./scripts/fix-storybook-gh-pages.js"
   },
   "husky": {},
   "dependencies": {
@@ -49,6 +51,7 @@
     "eslint-plugin-storybook": "^0.5.12",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"
   }
