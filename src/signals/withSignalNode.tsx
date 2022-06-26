@@ -35,7 +35,6 @@ type ComponentWithSignals<N extends Konva.Node, C extends NodeConfig> = (
 ) => JSX.Element;
 
 type ListenerMap<N extends Konva.Node, C extends NodeConfig> = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [id: string]: number[];
 };
 
@@ -78,11 +77,9 @@ export function withSignalNode<N extends Konva.Node, C extends NodeConfig>(
             const signal = signals[key] as Signal<SignalType>;
 
             function listener(value: SignalType) {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
               if (ref.current) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
+                // @ts-ignore :(
                 ref.current[keyStr](value);
               }
             }
@@ -111,7 +108,6 @@ export function withSignalNode<N extends Konva.Node, C extends NodeConfig>(
           const listeners = addedListenersMap[signal.id()];
 
           for (let j = 0; j < listeners.length; j++) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             signal.removeListenerAt(listeners[j]);
           }
         }

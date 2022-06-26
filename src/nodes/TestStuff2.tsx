@@ -6,11 +6,6 @@ import { withSignalNode } from "../signals/withSignalNode";
 const Rect$ = withSignalNode(ReactKonvaRect);
 
 export function MyTestStuffContainer2() {
-  // useSignal creates a signal object.
-  // When that signal is passed in a signal map to a
-  // $, a listener for that prop will be registered to the signal.
-  // It will automatically be called when the signal value
-  // is modified.
   const $rectWidth = useSignal<number>(300);
 
   return (
