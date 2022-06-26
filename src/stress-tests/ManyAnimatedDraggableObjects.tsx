@@ -4,7 +4,7 @@ import { Layer, Rect } from "react-konva";
 import { useKonvaAnimation } from "../animation/useKonvaAnimation";
 import { DraggableLayer } from "../components/DraggableLayer";
 import { DraggableStage } from "../components/DraggableStage/DraggableStage";
-import { FrameCounter } from "../components/FrameCounter/FrameCounter";
+import { FrameCounter } from "../components/FrameCounter";
 
 const rand = (min: number, max: number) => Math.random() * max - min + min;
 

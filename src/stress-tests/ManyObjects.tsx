@@ -1,5 +1,5 @@
 import { Layer, Rect, Stage } from "react-konva";
-import { FrameCounter } from "../components/FrameCounter/FrameCounter";
+import { FrameCounter } from "../components/FrameCounter";
 
 const rand = (min: number, max: number) => Math.random() * max - min + min;
 
