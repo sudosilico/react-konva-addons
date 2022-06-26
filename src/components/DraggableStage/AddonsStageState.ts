@@ -5,6 +5,6 @@ export type DraggableStageContextState = {
   refs?: DraggableStageRefs;
 };
 
-export const initialAddonsStageState: AddonsStageState = {
+export const initialAddonsStageState: DraggableStageContextState = {
   viewOffset: { x: 0, y: 0 },
 };

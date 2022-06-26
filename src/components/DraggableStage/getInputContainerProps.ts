@@ -1,11 +1,6 @@
-import { AddonsStageRefs } from "./AddonsStageState";
+import { DraggableStageRefs } from "./DraggableStage";
 
-export function getInputContainerProps({
-  contextStateRef,
-  stageRef,
-  dragOverlayRef,
-  bgRef,
-}: AddonsStageRefs) {
+export function getInputContainerProps(props: DraggableStageRefs) {
   return {
     onKeyDown(evt: React.KeyboardEvent<HTMLDivElement>) {
       //
