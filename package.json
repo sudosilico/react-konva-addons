@@ -6,7 +6,7 @@
     "prepare": "husky install",
     "storybook": "start-storybook -h 127.0.0.1 -p 6006",
     "lint": "eslint --ext .ts,.tsx src",
-    "build-storybook": "build-storybook -o docs"
+    "build-storybook": "build-storybook -o docs-build"
   },
   "husky": {},
   "dependencies": {
