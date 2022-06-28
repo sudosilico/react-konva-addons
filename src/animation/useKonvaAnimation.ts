@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { IFrame } from "konva/lib/types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export type Frame = IFrame;
 export type AnimateFunc = (frame: IFrame) => false | undefined | void;

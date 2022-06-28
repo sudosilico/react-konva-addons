@@ -1,11 +1,11 @@
 import { KonvaEventObject } from "konva/lib/Node";
 import { Layer, Rect as ReactKonvaRect, Stage } from "react-konva";
 import { useSignal } from "../signals/useSignal";
-import { withSignalNode } from "../signals/withSignalNode";
+import { withSignals } from "../signals/withSignals";
 
-const Rect$ = withSignalNode(ReactKonvaRect);
+const Rect$ = withSignals(ReactKonvaRect);
 
-export function MyTestStuffContainer2() {
+export function SignalsExample2() {
   const $rectWidth = useSignal<number>(300);
 
   return (

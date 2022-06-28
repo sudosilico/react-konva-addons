@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Rect } from "react-konva";
+import { Circle, Rect } from "react-konva";
 import { DraggableLayer } from "../components/DraggableLayer";
 import { DraggableStage } from "../components/DraggableStage/DraggableStage";
 

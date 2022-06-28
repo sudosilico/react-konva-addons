@@ -1,6 +1,6 @@
 import Konva from "konva";
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { Layer, Rect } from "react-konva";
+import { Layer, Rect, Stage } from "react-konva";
 import { Frame, useKonvaAnimation } from "../animation/useKonvaAnimation";
 import { DraggableLayer } from "../components/DraggableLayer";
 import { DraggableStage } from "../components/DraggableStage/DraggableStage";
@@ -75,23 +75,30 @@ export function FastAnimation(props: FastAnimationProps) {
   useKonvaAnimation(animate);
 
   return (
-    <DraggableStage width={500} height={500} bgFill="gray">
-      <DraggableLayer>
-        {items.map((item, index) => (
-          <Rect
-            ref={(el) => {
-              itemsRef.current[index] = el;
-            }}
-            {...item}
-            key={index}
-            stroke="black"
-            draggable
-          />
-        ))}
-      </DraggableLayer>
-      <Layer>
-        <FrameCounter width={500} height={100} />
-      </Layer>
-    </DraggableStage>
+    <>
+      <Stage width={500} height={100} bgFill="gray">
+        <Layer>
+          <FrameCounter width={500} height={100} />
+        </Layer>
+      </Stage>
+      <DraggableStage width={500} height={500} bgFill="gray">
+        <DraggableLayer>
+          {items.map((item, index) => (
+            <Rect
+              ref={(el) => {
+                itemsRef.current[index] = el;
+              }}
+              {...item}
+              key={index}
+              stroke="black"
+              draggable
+            />
+          ))}
+        </DraggableLayer>
+        <Layer>
+          <FrameCounter width={500} height={100} />
+        </Layer>
+      </DraggableStage>
+    </>
   );
 }
