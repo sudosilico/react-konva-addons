@@ -10,9 +10,7 @@ import { Signal } from "./useSignal";
 export type SignalComponentProps<N extends Konva.Node, C extends NodeConfig> = C & {
   ref?: RefObject<N>;
   children?: React.ReactNode;
-  // Signals
   $?: SignalMap<N, C>;
-  $dragPos?: Signal<Vector2d>;
 };
 
 export type SignalComponent<N extends Konva.Node, C extends NodeConfig> = (

@@ -1,8 +1,5 @@
-import Konva from "konva";
-import { Circle, Layer, Stage, Rect } from "./NodesWithSignals";
+import { Circle, Layer, Stage } from "./NodesWithSignals";
 import { Signal, useSignal } from "../signals/useSignal";
-import { withSignals } from "../signals/withSignals";
-import { useRef } from "react";
 
 type Point = { x: number; y: number };
 
@@ -17,10 +14,9 @@ function getMidpoint($a: Signal<Point>, $b: Signal<Point>): Point {
 }
 
 function Component() {
+  // create signals containing state that won't cause re-renders on change
   const $a = useSignal<Point>({ x: 0, y: 0 });
   const $b = useSignal<Point>({ x: 0, y: 0 });
-
-  const ref = useRef<Konva.Circle>(null);
 
   // Create a readonly signal derived from other signals.
   // Listeners to this signal will be notified when either $a or $b changes.
@@ -29,9 +25,9 @@ function Component() {
   return (
     <Stage>
       <Layer>
+        <Circle $dragPosition={$a} draggable />
+        <Circle $dragPosition={$b} draggable />
         <Circle $={{ position: $midpoint }} />
-        <Circle $dragPos={$b} draggable />
-        <Circle ref={ref} draggable />
       </Layer>
     </Stage>
   );

@@ -1,6 +1,5 @@
 import Konva from "konva";
 import { NodeConfig } from "konva/lib/Node";
-import { RemoveIndex } from "../../utils/type-utils";
 import { Signal } from "../useSignal";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,7 +1,8 @@
 import Konva from "konva";
+import { IFrame } from "konva/lib/types";
 import { useCallback, useRef } from "react";
 import { Group, Line, Rect, Text } from "react-konva";
-import { Frame, useKonvaAnimation } from "../animation/useKonvaAnimation";
+import { useKonvaAnimation } from "../animation/useKonvaAnimation";
 import { remapClamped } from "../utils/math";
 
 type FrameCounterPointsProps = {
@@ -50,7 +51,7 @@ function FrameCounterPoints(props: FrameCounterPointsProps) {
 
   // logic
   const animate = useCallback(
-    (frame: Frame) => {
+    (frame: IFrame) => {
       const state = frameCounterRef.current;
       const line = lineRef.current;
       const text30 = textRef30.current;

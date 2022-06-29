@@ -1,23 +1,30 @@
 import Konva from "konva";
-import { IFrame } from "konva/lib/types";
+import { AnimationFn, IFrame } from "konva/lib/types";
 import { useEffect } from "react";
 
-export type Frame = IFrame;
-export type AnimateFunc = (frame: IFrame) => false | undefined | void;
+export type AnimateFunc = (frame: IFrame) => boolean | void;
 
-export function useKonvaAnimation(animate: AnimateFunc, disabled?: boolean) {
+export type KonvaAnimationOptions = {
+  disabled?: boolean;
+  layer?: Konva.Layer;
+};
+
+export function useKonvaAnimation(animate: AnimateFunc, options?: KonvaAnimationOptions) {
+  const disabled = options?.disabled;
+  const layer = options?.layer;
+
   useEffect(() => {
     if (disabled) return;
 
     const animation = new Konva.Animation((frame) => {
       if (!frame) return;
-      animate(frame);
-    });
+      return animate(frame);
+    }, layer);
 
     animation.start();
 
     return () => {
       animation.stop();
     };
-  }, [animate, disabled]);
+  }, [animate, disabled, layer]);
 }

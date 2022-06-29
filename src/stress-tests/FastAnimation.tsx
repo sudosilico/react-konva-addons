@@ -1,7 +1,8 @@
 import Konva from "konva";
+import { IFrame } from "konva/lib/types";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Layer, Rect, Stage } from "react-konva";
-import { Frame, useKonvaAnimation } from "../animation/useKonvaAnimation";
+import { useKonvaAnimation } from "../animation/useKonvaAnimation";
 import { DraggableLayer } from "../components/DraggableLayer";
 import { DraggableStage } from "../components/DraggableStage/DraggableStage";
 import { FrameCounter } from "../components/FrameCounter";
@@ -47,7 +48,7 @@ export function FastAnimation(props: FastAnimationProps) {
     itemsRef.current = itemsRef.current.slice(0, count);
   }, [count]);
 
-  const animate = useCallback((frame: Frame) => {
+  const animate = useCallback((frame: IFrame) => {
     const elements = itemsRef.current as Konva.Rect[];
 
     if (!elements) {

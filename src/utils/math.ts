@@ -1,8 +1,17 @@
+import { Vector2d } from "konva/lib/types";
+
 /**
  * Linear interpolation between two values
  */
 export function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
+}
+
+export function lerp2d(a: Vector2d, b: Vector2d, t: number) {
+  return {
+    x: lerp(a.x, b.x, t),
+    y: lerp(a.y, b.y, t),
+  };
 }
 
 /**
@@ -19,6 +28,13 @@ export function clamp01(value: number) {
  */
 export function lerp01(a: number, b: number, t: number) {
   return a + (b - a) * clamp01(t);
+}
+
+export function lerp2d01(a: Vector2d, b: Vector2d, t: number) {
+  return {
+    x: lerp01(a.x, b.x, t),
+    y: lerp01(a.y, b.y, t),
+  };
 }
 
 /**
