@@ -36,11 +36,11 @@ export function SignalsExample2() {
           $={{
             x: $rectWidth,
           }}
-          $drag={{
-            set: {
-              x: $rectWidth,
-            },
-          }}
+          // $drag={{
+          //   set: {
+          //     x: $rectWidth,
+          //   },
+          // }}
           onDragMove={(e: KonvaEventObject<DragEvent>) => {
             $rectWidth.set(e.target.x());
           }}

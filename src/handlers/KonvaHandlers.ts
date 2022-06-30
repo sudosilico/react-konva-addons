@@ -1,5 +1,4 @@
 import { KonvaEventObject } from "konva/lib/Node";
-import { RefObject } from "react";
 
 export type KonvaDragHandler = (evt: KonvaEventObject<DragEvent>) => void;
 
@@ -19,5 +18,3 @@ export type KonvaMouseHandlers = {
 type AllHandlers = KonvaDragHandlers & KonvaMouseHandlers;
 
 export type KonvaAddonProps = Partial<AllHandlers>;
-
-export type AddonBehaviorArray<T> = [RefObject<T>, KonvaAddonProps];

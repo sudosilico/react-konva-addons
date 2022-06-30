@@ -68,6 +68,3 @@ export function remap(val: number, a1: number, b1: number, a2: number, b2: numbe
 export function remapClamped(val: number, a1: number, b1: number, a2: number, b2: number) {
   return lerp01(a2, b2, (val - a1) / (b1 - a1));
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type PickField<T, K extends string> = T extends Record<K, any> ? T[K] : never;

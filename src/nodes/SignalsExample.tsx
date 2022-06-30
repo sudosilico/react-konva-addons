@@ -25,8 +25,8 @@ function Component() {
   return (
     <Stage>
       <Layer>
-        <Circle $dragPosition={$a} draggable />
-        <Circle $dragPosition={$b} draggable />
+        {/* <Circle $dragPosition={$a} draggable />
+        <Circle $dragPosition={$b} draggable /> */}
         <Circle $={{ position: $midpoint }} />
       </Layer>
     </Stage>

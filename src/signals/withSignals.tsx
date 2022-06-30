@@ -1,8 +1,7 @@
 import Konva from "konva";
 import { NodeConfig } from "konva/lib/Node";
-import { Vector2d } from "konva/lib/types";
 import { forwardRef, RefObject, useEffect, useRef } from "react";
-import { KonvaNodeComponent } from "react-konva";
+import { KonvaNodeComponent, KonvaNodeEvents } from "react-konva";
 import { RemoveIndex } from "../utils/type-utils";
 import { SignalMap } from "./types/SignalMap";
 import { Signal } from "./useSignal";
@@ -11,7 +10,8 @@ export type SignalComponentProps<N extends Konva.Node, C extends NodeConfig> = C
   ref?: RefObject<N>;
   children?: React.ReactNode;
   $?: SignalMap<N, C>;
-};
+} & KonvaNodeEvents &
+  React.ClassAttributes<N>;
 
 export type SignalComponent<N extends Konva.Node, C extends NodeConfig> = (
   props: RemoveIndex<SignalComponentProps<N, C>>,

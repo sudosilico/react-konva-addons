@@ -1,17 +1,10 @@
 import Konva from "konva";
 import { IFrame, Vector2d } from "konva/lib/types";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Layer, Rect, Stage as KStage, StageProps } from "react-konva";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { Group, Layer, Rect, Stage as KStage, StageProps } from "react-konva";
 import { useKonvaAnimation } from "../../animation/useKonvaAnimation";
 import { withSignals } from "../../signals/withSignals";
-import {
-  getNodeAABB,
-  aabbOverlap,
-  aabbContains,
-  getViewportAABB,
-  isNodeVisibleInStage,
-  lockAABBInAABB,
-} from "../../utils/aabb";
+import { aabbContains, getViewportAABB, lockAABBInAABB } from "../../utils/aabb";
 import { lerp01, lerp2d01 } from "../../utils/math";
 import { useForceRerender } from "../../utils/hooks/useForceRerender";
 import { BoundInnerDraggableRect, DraggableRect, FixedRect } from "./NewDraggableStageTools";
@@ -53,6 +46,10 @@ const testRect3 = {
   height: 70,
 };
 
+function FixedGroup({ children }: { children?: React.ReactNode }) {
+  return <Group>{children}</Group>;
+}
+
 export function NewDraggableStage(props: NewDraggableStageProps) {
   const stageRef = useRef<Konva.Stage & CustomStageAttribs>(null);
   const rerender = useForceRerender();
@@ -63,49 +60,6 @@ export function NewDraggableStage(props: NewDraggableStageProps) {
 
   const width = 500;
   const height = 500;
-
-  const updateCollisionRefs = () => {
-    const stage = stageRef.current;
-    const rect1 = ref1.current;
-    const rect2 = ref2.current;
-    const rect3 = ref3.current;
-
-    if (!stage || !rect1 || !rect2 || !rect3) return;
-
-    const cameraAABB = getViewportAABB(stage);
-    const rect1AABB = getNodeAABB(rect1);
-    const rect2AABB = getNodeAABB(rect2);
-    const rect3AABB = getNodeAABB(rect3);
-
-    const cameraOverlapsRect1 = aabbOverlap(cameraAABB, rect1AABB);
-    const cameraOverlapsRect2 = aabbOverlap(cameraAABB, rect2AABB);
-    const rect3OverlapsRect1 = aabbOverlap(rect3AABB, rect1AABB);
-
-    console.log(`rect1 visible: ${isNodeVisibleInStage(stage, rect1) ? "true" : "false"}`);
-    console.log(`rect2 visible: ${isNodeVisibleInStage(stage, rect2) ? "true" : "false"}`);
-
-    // if (cameraOverlapsRect1) {
-    //   rect1.fill("green");
-    // } else {
-    //   rect1.fill("gray");
-    // }
-
-    // if (cameraOverlapsRect2) {
-    //   rect2.fill("green");
-    // } else {
-    //   rect2.fill("black");
-    // }
-
-    // if (rect3OverlapsRect1) {
-    //   if (aabbContains(rect1AABB, rect3AABB)) {
-    //     rect3.fill("white");
-    //   } else {
-    //     rect3.fill("green");
-    //   }
-    // } else {
-    //   rect3.fill("yellow");
-    // }
-  };
 
   renders = renders + 1;
 
@@ -203,20 +157,6 @@ export function NewDraggableStage(props: NewDraggableStageProps) {
   useKonvaAnimation(limitBoundsAnimateFunc, {
     layer: stageRef?.current?.getLayer() as Konva.Layer,
   });
-
-  // // Ensure that the
-  // useLayoutEffect(() => {
-  //   const stage = stageRef.current;
-  //   if (!stage) return;
-
-  //   const container = stage.container();
-
-  //   // Make sure the stage container has a tab index so that we can
-  //   // focus it and pick up keyboard events on it.
-  //   if (typeof container.tabIndex == "undefined") {
-  //     container.tabIndex = 1;
-  //   }
-  // }, []);
 
   const onWheel = useCallback(
     (e: WheelEvent) => {
@@ -409,8 +349,6 @@ export function NewDraggableStage(props: NewDraggableStageProps) {
       const stage = stageRef.current;
       const { target, evt } = e;
       if (stage && evt) {
-        updateCollisionRefs();
-
         if (target === stage && e.currentTarget === stage) {
           // Check to see if we need to snap the position back to the bounds.
 
@@ -458,13 +396,7 @@ export function NewDraggableStage(props: NewDraggableStageProps) {
           <BoundInnerDraggableRect x={260} y={200} />
           <Rect ref={ref1} {...testRect1} fill="gray" />
           <Rect ref={ref2} {...testRect2} fill="black" />
-          <Rect
-            ref={ref3}
-            {...testRect3}
-            fill="yellow"
-            draggable
-            onDragMove={updateCollisionRefs}
-          />
+          <Rect ref={ref3} {...testRect3} fill="yellow" draggable />
         </Layer>
       </Stage>
       <div style={{ width: 500, height: 200, background: "lightgray" }}>
