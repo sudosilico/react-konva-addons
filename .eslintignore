@@ -3,3 +3,5 @@ dist
 vite.config.ts
 es
 lib
+src/**/*.stories.tsx
+src/**/*.stories.mdx
