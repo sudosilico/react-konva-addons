@@ -15,29 +15,24 @@ export function useKonvaContainerEventListener<K extends keyof HTMLElementEventM
 
   useEffect(() => {
     const eventListener: typeof callback = (event) => {
-      console.log("eventListener callback");
       savedCallback.current(event);
     };
 
     const node = ref.current;
     if (!node) {
-      console.log("No node, returning.");
       return;
     }
 
     const stage = node.getStage();
     if (!stage) {
-      console.log("No stage, returning.");
       return;
     }
 
     const container = stage.container();
 
-    console.log("Adding container listener: " + eventName);
     container.addEventListener(eventName, eventListener, options);
 
     return () => {
-      console.log("Removing container listener: " + eventName);
       container.removeEventListener(eventName, eventListener);
     };
   }, [eventName, options, ref]);

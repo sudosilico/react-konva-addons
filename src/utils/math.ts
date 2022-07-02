@@ -68,3 +68,25 @@ export function remap(val: number, a1: number, b1: number, a2: number, b2: numbe
 export function remapClamped(val: number, a1: number, b1: number, a2: number, b2: number) {
   return lerp01(a2, b2, (val - a1) / (b1 - a1));
 }
+
+export function clamp2d(value: Vector2d, min: Vector2d, max: Vector2d) {
+  const result = { ...value };
+
+  if (result.x < min.x) {
+    result.x = min.x;
+  }
+
+  if (result.x > max.x) {
+    result.x = max.x;
+  }
+
+  if (result.y < min.y) {
+    result.y = min.y;
+  }
+
+  if (result.y > max.y) {
+    result.y = max.y;
+  }
+
+  return result;
+}

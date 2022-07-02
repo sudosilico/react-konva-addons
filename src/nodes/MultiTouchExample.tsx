@@ -1,12 +1,8 @@
 import Konva from "konva";
 import { KonvaEventObject } from "konva/lib/Node";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Circle, Group, Layer, Rect, Stage, Text } from "react-konva";
-import {
-  BoundInnerDraggableRect,
-  DraggableRect,
-  FixedRect,
-} from "../components/NewDraggableStage/NewDraggableStageTools";
+import { useLayoutEffect, useRef, useState } from "react";
+import { Circle, Group, Layer, Rect, Stage } from "react-konva";
+import { DraggableRect, FixedRect } from "../components/DraggableStage/DraggableStageTools";
 import { useKonvaContainerEventListener } from "../events/useKonvaContainerEventListener";
 
 export type MultiTouchExampleProps = {

@@ -3,7 +3,7 @@ import { RefObject, useEffect, useLayoutEffect, useRef } from "react";
 // https://usehooks-ts.com/react-hook/use-event-listener
 
 // Window Event based useEventListener interface
-function useEventListener<K extends keyof WindowEventMap>(
+export function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
   element?: undefined,
@@ -11,7 +11,7 @@ function useEventListener<K extends keyof WindowEventMap>(
 ): void;
 
 // Element Event based useEventListener interface
-function useEventListener<
+export function useEventListener<
   K extends keyof HTMLElementEventMap,
   T extends HTMLElement = HTMLDivElement,
 >(
@@ -22,14 +22,14 @@ function useEventListener<
 ): void;
 
 // Document Event based useEventListener interface
-function useEventListener<K extends keyof DocumentEventMap>(
+export function useEventListener<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
   element: RefObject<Document>,
   options?: boolean | AddEventListenerOptions,
 ): void;
 
-function useEventListener<
+export function useEventListener<
   KW extends keyof WindowEventMap,
   KH extends keyof HTMLElementEventMap,
   T extends HTMLElement | void = void,
@@ -64,5 +64,3 @@ function useEventListener<
     };
   }, [eventName, element, options]);
 }
-
-export default useEventListener;

@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Rect } from "react-konva";
+import { Rect, Layer, Circle } from "react-konva";
+import { DraggableStage } from "./../components/DraggableStage/DraggableStage";
 
 <Meta title="react-konva-addons/DraggableStage" />
 
@@ -7,4 +8,26 @@ import { Rect } from "react-konva";
 
 The `DraggableStage` component wraps a `Stage`, allowing its viewport to be panned around and zoomed.
 
-<Canvas></Canvas>
+<Canvas>
+  <DraggableStage
+    width={400}
+    height={400}
+    viewportBounds={{ x: 0, y: 0, width: 1000, height: 1000 }}
+    smoothScaling={true}
+    minZoom={0.1}
+    maxZoom={20}
+  >
+    <Layer>
+      <Rect width={1000} height={1000} fill="cornflowerblue" />
+      <Circle x={100} y={100} radius={50} fill="green" draggable />
+      <Circle x={200} y={200} radius={40} fill="green" draggable />
+      <Circle x={300} y={300} radius={30} fill="green" draggable />
+      <Circle x={400} y={400} radius={20} fill="green" draggable />
+      <Circle x={500} y={500} radius={10} fill="green" draggable />
+      <Rect width={1000} height={5} fill="orange" />
+      <Rect y={1000 - 5} width={1000} height={5} fill="orange" />
+      <Rect width={5} height={1000} fill="orange" />
+      <Rect x={1000 - 5} width={5} height={1000} fill="orange" />
+    </Layer>
+  </DraggableStage>
+</Canvas>

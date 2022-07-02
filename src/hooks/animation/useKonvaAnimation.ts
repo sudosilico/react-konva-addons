@@ -1,5 +1,5 @@
 import Konva from "konva";
-import { AnimationFn, IFrame } from "konva/lib/types";
+import { IFrame } from "konva/lib/types";
 import { useEffect } from "react";
 
 export type AnimateFunc = (frame: IFrame) => boolean | void;

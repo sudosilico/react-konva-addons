@@ -1,3 +1,3 @@
-import { NewDraggableStage } from "./components/NewDraggableStage/NewDraggableStage";
-
-export const DraggableStage = NewDraggableStage;
+export * from "./components";
+export * from "./utils";
+export * from "./hooks";

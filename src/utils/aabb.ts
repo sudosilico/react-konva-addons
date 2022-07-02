@@ -19,7 +19,7 @@ export function aabbContains(a: AABB, b: AABB) {
   );
 }
 
-export const getNodeAABB = (node: Konva.Node) => ({
+export const aabbFromNode = (node: Konva.Node) => ({
   x: node.x(),
   y: node.y(),
   width: node.width(),
@@ -45,12 +45,11 @@ export function isNodeVisibleInStage(stage: Konva.Stage, node: Konva.Node) {
 }
 
 export function lockAABBInAABB(bounds: AABB, node: AABB): AABB {
-  // otherwise, check the size to see if it can even fit inside the bounds
   const canFit = node.width <= bounds.width && node.height <= bounds.height;
 
   if (canFit) {
     const n = { ...node };
-    // if it can fit, return the node rect fitted into the bounds
+
     if (n.x < bounds.x) {
       n.x = bounds.x;
     } else if (n.x + n.width > bounds.x + bounds.width) {

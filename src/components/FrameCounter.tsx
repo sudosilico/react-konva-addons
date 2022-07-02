@@ -2,7 +2,7 @@ import Konva from "konva";
 import { IFrame } from "konva/lib/types";
 import { useCallback, useRef } from "react";
 import { Group, Line, Rect, Text } from "react-konva";
-import { useKonvaAnimation } from "../animation/useKonvaAnimation";
+import { useKonvaAnimation } from "../hooks/animation/useKonvaAnimation";
 import { remapClamped } from "../utils/math";
 
 type FrameCounterPointsProps = {
