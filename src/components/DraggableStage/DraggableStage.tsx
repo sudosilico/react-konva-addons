@@ -27,6 +27,7 @@ export type DraggableStageProps = RemoveIndex<StageProps> & {
   maxZoom: number;
   children?: React.ReactNode;
   smoothSnapBackToBounds?: boolean;
+  scalingSensitivity: number;
 };
 
 const defaultProps: DraggableStageProps = {
@@ -36,6 +37,7 @@ const defaultProps: DraggableStageProps = {
   maxZoom: 20,
   smoothScaling: true,
   smoothSnapBackToBounds: true,
+  scalingSensitivity: 0.2,
 };
 
 export function DraggableStage(props: DraggableStageProps) {
@@ -49,6 +51,7 @@ export function DraggableStage(props: DraggableStageProps) {
     maxZoom,
     children,
     smoothSnapBackToBounds,
+    scalingSensitivity,
   } = propsWithDefaults;
 
   const stageRef = useRef<Konva.Stage & DraggableStageAttribs>(null);
@@ -188,6 +191,7 @@ export function DraggableStage(props: DraggableStageProps) {
     maxZoom,
     smoothScaling,
     lockViewportToBounds,
+    scalingSensitivity,
     onWheelProp,
   );
 
@@ -217,6 +221,8 @@ export function DraggableStage(props: DraggableStageProps) {
 
   const dragHandlers = {
     onDragStart(e: Konva.KonvaEventObject<DragEvent>) {
+      e.evt.preventDefault();
+
       const stage = stageRef.current;
       if (stage) {
         stage.isSnappingBack = false;
@@ -251,6 +257,10 @@ export function DraggableStage(props: DraggableStageProps) {
       }
     },
     onDragMove(e: Konva.KonvaEventObject<DragEvent>) {
+      if (e && e.evt) {
+        e.evt.preventDefault();
+      }
+
       const stage = stageRef.current;
       const { target, evt } = e;
       const { movementX, movementY } = evt;
@@ -265,6 +275,10 @@ export function DraggableStage(props: DraggableStageProps) {
       }
     },
     onDragEnd(e: Konva.KonvaEventObject<DragEvent>) {
+      if (e && e.evt) {
+        e.evt.preventDefault();
+      }
+
       const stage = stageRef.current;
       const { target, evt } = e;
       if (stage && evt) {

@@ -9,7 +9,7 @@
     "prepare": "husky install",
     "build": "tsc -outDir ./es && tsc -module commonjs -outDir ./lib",
     "storybook": "start-storybook -h 127.0.0.1 -p 6006",
-    "clean": "rimraf docs docs-build dist es lib",
+    "clean": "npx rimraf docs docs-build dist es lib",
     "lint": "eslint --ext .ts,.tsx src",
     "lint-stories": "eslint --ext .mdx src",
     "lint-all": "eslint --ext .ts,.tsx,.mdx src",

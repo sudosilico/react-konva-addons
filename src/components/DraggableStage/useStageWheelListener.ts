@@ -9,6 +9,7 @@ export function useStageWheelListener(
   maxZoom: number,
   smoothScaling: boolean | undefined,
   lockViewportToBounds: (stage: Konva.Stage & DraggableStageAttribs, hardSnap?: boolean) => boolean,
+  scalingSensitivity: number,
   onWheelProp?:
     | (((evt: KonvaEventObject<WheelEvent>) => void) &
         ((evt: KonvaEventObject<WheelEvent>) => void))
@@ -28,7 +29,7 @@ export function useStageWheelListener(
           if (e.ctrlKey) {
             // zooming
             const prevScale = stage.scaleX();
-            const scaleDelta = Math.exp(-e.deltaY / 100);
+            const scaleDelta = Math.exp(-e.deltaY / 100) * scalingSensitivity;
 
             // get pointer position
             const pointer = stage.getPointerPosition();
@@ -92,7 +93,15 @@ export function useStageWheelListener(
         }
       }
     },
-    [lockViewportToBounds, maxZoom, minZoom, onWheelProp, smoothScaling, stageRef],
+    [
+      lockViewportToBounds,
+      maxZoom,
+      minZoom,
+      onWheelProp,
+      scalingSensitivity,
+      smoothScaling,
+      stageRef,
+    ],
   );
 
   // Set up the document scroll listener for wheel events
